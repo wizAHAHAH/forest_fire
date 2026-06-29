@@ -9,4 +9,31 @@ export class Tree extends Cell {
         super(x, y, terrain);
         this.state = STATE.TREE;
     }
+
+    ignitionProbability(burningNeighbors, wind, baseFireProb) {
+        if(burningNeighbors.length === 0) return 0;
+
+        // вер не загореться от соседей
+        let survivalProb = 1;
+
+        for (const neighbor of burningNeighbors) {
+            const windMultiplier = wind.multiplierFor(neighbor, this);
+            const terrainMultiplier = this.terrainMultiplier()
+        }
+
+        // вер загореться именно от этого соседа
+        const pFromThisNeighbor = clamp (baseFireProb * windMultiplier * terrainMultiplier);
+        survivalProb *= (1 - pFromThisNeighbor);
+
+        return clamp(1 - survivalProb);
+    }
+
+    tryIgnite(burningNeighbors, wind, baseFireProb) {
+        const p = this.ignitionProbability(burningNeighbors, wind, baseFireProb);
+        if (Math.random() < p) {
+            this.state = STATE.FIRE;
+            return true;
+        }
+        return false
+    }
 }
