@@ -30,7 +30,7 @@ export class Wind {
         };
 
         const b = WIND_VECTORS[this.direction];
-        
+
         const dot = a.dx * b.dx + a.dy * b.dy;
 
         const magA = Math.hypot(a.dx, a.dy);
