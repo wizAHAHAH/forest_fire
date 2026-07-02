@@ -11,7 +11,7 @@ const SIZE = 60;
 export default function App() {
     const simRef = useRef(new Simulation(SIZE, 0.6));
 
-    const [running. setRunning] = useState(false);
+    const [running, setRunning] = useState(false);
     const [tick, setTick] = useState(0);
 
     useEffect() => {
