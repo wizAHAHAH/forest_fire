@@ -65,3 +65,85 @@ button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+.brush-panel {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brush-label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.brush-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.brush-btn.active {
+  border-color: #d85a30;
+  color: #d85a30;
+}
+
+.brush-size-label {
+  font-size: 13px;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panel {
+    background: #242422;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.panel-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #aaa;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.slider-row {
+    margin-bottom: 14px;
+}
+
+.slider-row.disabled {
+    opacity: 0.5;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.slider-header label {
+    font-size: 13px;
+    color: #ccc;
+}
+
+.slider-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #e0e0e0;
+    min-width: 48px;
+    text-align: right;
+}
+
+.slider-row input[type="range"] {
+    width: 100%;
+}
+
+.disabled-hint {
+    font-size: 11px;
+    color: #666;
+}
