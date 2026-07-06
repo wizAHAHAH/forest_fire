@@ -21,7 +21,7 @@ export const STATE = {
 };
 
 export class Cell {
-    constructor(x, y, terrain = TERRAIN.NORMAL){
+    constructor(x, y, terrain = TERRAIN.NORMAL) {
         this.x = x;
         this.y = y;
         this.terrain = terrain;
@@ -33,6 +33,10 @@ export class Cell {
 
     terrainMultiplier(){
         return TERRAIN_MULTIPLIER[this.terrain];
+    }
+
+    isEmpty() {
+        return this.state === STATE.EMPTY;
     }
 
     isTree() {
