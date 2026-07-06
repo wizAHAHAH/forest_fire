@@ -14,7 +14,7 @@ export default function App() {
     const [running, setRunning] = useState(false);
     const [tick, setTick] = useState(0);
 
-    useEffect() => {
+    useEffect(() => {
         if (!running) return;
 
         const interval = setInterval(() => {
