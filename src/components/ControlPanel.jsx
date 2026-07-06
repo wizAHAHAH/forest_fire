@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 const SLIDERS = [
     {
         label: 'Burn probability',
@@ -37,7 +36,7 @@ const SLIDERS = [
         max: 20,
         step: 1,
         format: v => v,
-        onlyBeforeStart: true;
+        onlyBeforeStart: true,
     },
 ];
 
@@ -58,6 +57,7 @@ export default function ControlPanel({ params, onParamChange, running }) {
         <div className="panel">
             <h3 className="panel-title"> Params</h3>
             {SLIDERS.map(slider => {
+                const isDisabled = slider.onlyBeforeStart && running;
                 return (
                     <div key={slider.key} className={`slider-row ${isDisabled ? 'disabled' : ''}`}>
                         <div className='slider-header'>
