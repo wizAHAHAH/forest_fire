@@ -147,3 +147,19 @@ button:disabled {
     font-size: 11px;
     color: #666;
 }
+
+.chart-panel {
+    width: 100%;
+}
+
+.chart-container {
+    position: relative;
+    height: 220px;
+}
+
+.chart-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+}
