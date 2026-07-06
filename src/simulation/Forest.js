@@ -17,17 +17,17 @@ export class Forest {
             }
             grid.push(row);
         }
-        return grid
+        return grid;
     }
     getCell(x,y) {
         return this.grid[y][x];
     }
 
     getNeighbors(x, y) {
-        cons neighbors = []'
+        const neighbors = [];
         for (let dy = -1; dy <= 1; dy++) {
             for (let dx = -1; dx <= 1; dx++) {
-                if(dx === 0 && dy ==== 0) continue;
+                if(dx === 0 && dy === 0) continue;
                 const nx = x + dx;
                 const ny = y + dy;
                 if (nx >= 0 && nx < this.size && ny >= 0 && ny < this.size) {
@@ -48,7 +48,7 @@ export class Forest {
         }
 
         for (let i = trees.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random) * (i+1));
+            const j = Math.floor(Math.random() * (i+1));
         }
         trees.slice(0, count).forEach(tree => { tree.state = STATE.FIRE;});
     }
@@ -59,9 +59,7 @@ export class Forest {
 
     step(wind, params) {
         const { fireProb, growProb } = params;
-
         const transitions = [];
-
 
         for (let y = 0; y < this.size; y++){
             for (let x = 0; x < this.size; x++) {
@@ -71,7 +69,7 @@ export class Forest {
                     if(Math.random() < growProb) {
                         transitions.push({ x, y, newState: STATE.TREE });
                     }
-                } else if (cell.isTree) {
+                } else if (cell.isTree()) {
                     const neighbors = this.getNeighbors(x, y);
                     const burningNeighbors = neighbors.filter(n => n.isFire());
 
@@ -102,7 +100,7 @@ export class Forest {
     }
 
     countStates() {
-        const counts = { EMPTY: 0, TREE: 0, FIRE: 0. BURNED: 0 };
+        const counts = { EMPTY: 0, TREE: 0, FIRE: 0, BURNED: 0 };
         for (let y = 0; y < this.size; y++) {
             for (let x = 0; x < this.size; x++) {
                 counts[this.grid[y][x].state]++;
