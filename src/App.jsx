@@ -29,7 +29,7 @@ export default function App() {
         };
 
     const handleIgnite = () => {
-        simRef.currentq.ignite();
+        simRef.current.ignite();
         setTick(t => t + 1);
         };
 
@@ -73,7 +73,7 @@ export default function App() {
                                     running={running}
                                 />
                                 <WindControl
-                                    wind={simRef.current.params}
+                                    wind={simRef.current.wind}
                                     onParamChange={handleParamChange}
                                 />
                             </div>
