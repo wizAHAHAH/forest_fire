@@ -20,9 +20,7 @@ export class Simulation {
         this.tick = 0;
         this.running = false;
 
-
         this.history = [];
-
         this.prevFireCount = 0;
     }
 
@@ -55,6 +53,10 @@ export class Simulation {
         }
     }
 
+    ignite() {
+        this.forest.igniteRandom(this.params.igniteCount);
+    }
+
     reset() {
         this.forest = new Forest(this.size, this.params.density);
         this.wind = new Wind('N', 0);
@@ -75,8 +77,9 @@ export class Simulation {
     setGrowProb(value) { this.params.growProb = value; }
     setSpeed(value) { this.params.speed = value; }
     setIgniteCount(value) { this.params.igniteCount = value; }
-    setWindDirection(dir) { this.params.setDirection(dir); }
-    setWindStrength(value) { this.params.setStrength = value; }
+
+    setWindDirection(dir) { this.wind.setDirection(dir); }
+    setWindStrength(value) { this.wind.setStrength = value; }
 
     setTerrain(x, y, terrain) {
         this.forest.setTerrain(x, y, terrain);
