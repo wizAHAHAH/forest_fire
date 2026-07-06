@@ -1,6 +1,6 @@
 import { Cell, STATE } from './Cell.js'
 
-export function clamp (value, min = 0, max = 1) {
+export function clamp(value, min = 0, max = 1) {
     return Math.max(min, Math.min(max, value));
 }
 
@@ -18,11 +18,11 @@ export class Tree extends Cell {
 
         for (const neighbor of burningNeighbors) {
             const windMultiplier = wind.multiplierFor(neighbor, this);
-            const terrainMultiplier = this.terrainMultiplier()
+            const terrainMultiplier = this.terrainMultiplier();
         }
 
         // вер загореться именно от этого соседа
-        const pFromThisNeighbor = clamp (baseFireProb * windMultiplier * terrainMultiplier);
+        const pFromThisNeighbor = clamp(baseFireProb * windMultiplier * terrainMultiplier);
         survivalProb *= (1 - pFromThisNeighbor);
 
         return clamp(1 - survivalProb);
