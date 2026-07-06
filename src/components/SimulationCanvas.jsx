@@ -58,7 +58,7 @@ export default function SimulationCanvas({ simRef, running, tick }) {
             }
         }
 
-    function getCellCords(e) {
+    function getCellCoords(e) {
             const rect = canvasRef.current.getBoundingClientRect();
             const x = Math.floor((e.clientX - rect.left) / CELL_SIZE);
             const y = Math.floor((e.clientY - rect.top) / CELL_SIZE);
