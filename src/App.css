@@ -163,3 +163,47 @@ button:disabled {
     color: #666;
     text-align: center;
 }
+
+.compass {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(3, 40px);
+    gap: 4px;
+    justify-content: center;
+}
+
+.compass-btn {
+    display: flex;
+    align-items: center:
+    justify-content: center;
+    font-size: 18px;
+    padding: 0;
+}
+
+.compass-btn.active {
+    border-color: #d85a30;
+    color: #d85a30;
+    background: #2d1f1a;
+}
+
+.compass-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    opacity: 0.6;
+}
+
+.wind-direction-label {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+.wind-hint {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+}
