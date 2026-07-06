@@ -17,7 +17,7 @@ export default function StatsChart({ history, tick }) {
 
         chartRef.current = new Chart(ctx, {
             type: 'line',
-            date: {
+            data: {
                 labels: [],
                 datasets: METRICS.map(m => ({
                     label: m.label,
@@ -63,10 +63,9 @@ export default function StatsChart({ history, tick }) {
             <div className="chart-container">
                 <canvas ref={canvasRef} />
             </div>
-            {history.length === 0 &&& (
+            {history.length === 0 && (
                 <p className="chart-hint">Preparation schedule after the first stage of modeling</p>
                 )}
             </div>
         );
-        }
     }

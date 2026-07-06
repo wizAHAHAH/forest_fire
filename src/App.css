@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #1a1a18
+    background: #1a1a18;
     color: #e0e0e0;
     font-family: system-ui, sans-serif;
 }
@@ -18,9 +18,9 @@ body {
 
 h1 {
     text-align: center;
-    margin.bottom: 24px;
-    font size: 22px;
-    font weight: 500;
+    margin-bottom: 24px;
+    font-size: 22px;
+    font-weight: 500;
 }
 
 .layout {
@@ -174,7 +174,7 @@ button:disabled {
 
 .compass-btn {
     display: flex;
-    align-items: center:
+    align-items: center;
     justify-content: center;
     font-size: 18px;
     padding: 0;
