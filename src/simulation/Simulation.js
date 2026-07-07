@@ -12,6 +12,7 @@ export class Simulation {
             growProb: 0.01,
             igniteCount: 3,
             speed: 200,
+            lightningProb: 0.0002,
         };
 
         this.forest = new Forest(size, density);

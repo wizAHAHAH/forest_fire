@@ -49,6 +49,7 @@ export class Forest {
 
         for (let i = trees.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i+1));
+            [trees[i], trees[j]] = [trees[j], trees[i]];
         }
         trees.slice(0, count).forEach(tree => { tree.state = STATE.FIRE;});
     }
@@ -58,7 +59,7 @@ export class Forest {
     }
 
     step(wind, params) {
-        const { fireProb, growProb } = params;
+        const { fireProb, growProb, lightningProb = 0 } = params;
         const transitions = [];
 
         for (let y = 0; y < this.size; y++){
@@ -78,6 +79,9 @@ export class Forest {
                         if(Math.random() < prob) {
                             transitions.push({ x, y, newState: STATE.FIRE });
                         }
+                    } else if (Math.random() < lightningProb) {
+                        // cамопроизвольное возгорание
+                        transitions.push({ x, y, newState: STATE.FIRE });
                     }
                 } else if (cell.isFire()) {
                     transitions.push({ x, y, newState: STATE.BURNED });
