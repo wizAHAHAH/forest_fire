@@ -79,7 +79,7 @@ export class Simulation {
     setIgniteCount(value) { this.params.igniteCount = value; }
 
     setWindDirection(dir) { this.wind.setDirection(dir); }
-    setWindStrength(value) { this.wind.setStrength = value; }
+    setWindStrength(value) { this.wind.setStrength(value); }
 
     setTerrain(x, y, terrain) {
         this.forest.setTerrain(x, y, terrain);

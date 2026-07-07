@@ -82,5 +82,5 @@ export default function ControlPanel({ params, onParamChange, running }) {
                 );
             })}
         </div>
-    ;
+    );
 }
