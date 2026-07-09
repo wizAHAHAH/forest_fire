@@ -48,12 +48,6 @@ EMPTY  →  TREE  →  FIRE  →  BURNED
 
 Соседями клетки `(x, y)` считаются все 8 клеток вокруг неё (включая диагонали):
 
-```mermaid
-graph TD
-    NW((NW)) --- N((N)) --- NE((NE))
-    W((W)) --- C((x,y)) --- E((E))
-    SW((SW)) --- S((S)) --- SE((SE))
-```
 
 ### Вероятность загорания
 
@@ -88,8 +82,13 @@ windMultiplier = 1 + strength × cos(θ)
 ```mermaid
 classDiagram
     class Cell {
-        +x, y, terrain, state
-        +isEmpty() isTree() isFire() isBurned()
+        +x, y
+        +terrain
+        +state
+        +isEmpty()
+        +isTree()
+        +isFire()
+        +isBurned()
         +terrainMultiplier()
     }
     class Tree {
@@ -97,7 +96,8 @@ classDiagram
         +tryIgnite()
     }
     class Wind {
-        +direction, strength
+        +direction
+        +strength
         +multiplierFor(from, to)
     }
     class Forest {
@@ -108,8 +108,13 @@ classDiagram
         +countStates()
     }
     class Simulation {
-        +params, wind, forest, history
-        +step() ignite() reset()
+        +params
+        +wind
+        +forest
+        +history
+        +step()
+        +ignite()
+        +reset()
     }
 
     Cell <|-- Tree
@@ -160,7 +165,6 @@ forest_fire/
 └── package.json
 ```
 
-- [ ] Django-бэкенд для сохранения прогонов симуляции (изначально рассматривался как опция)
 
 ---
 
