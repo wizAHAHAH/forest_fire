@@ -28,6 +28,7 @@ export class Tree extends Cell {
         return clamp(1 - survivalProb);
     }
 
+    // вероятность загореться дереву
     tryIgnite(burningNeighbors, wind, baseFireProb) {
         const p = this.ignitionProbability(burningNeighbors, wind, baseFireProb);
         if (Math.random() < p) {

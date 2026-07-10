@@ -7,6 +7,7 @@ export class Forest {
         this.grid = this.generate(density);
     }
 
+    // генерация сетки (двум массив size x size)
     generate(density) {
         const grid = [];
         for (let y = 0; y < this.size; y++){
@@ -19,10 +20,12 @@ export class Forest {
         }
         return grid;
     }
+    // клетка по коордам
     getCell(x,y) {
         return this.grid[y][x];
     }
 
+    // окрестность мура (все 8 клеток вокруг)
     getNeighbors(x, y) {
         const neighbors = [];
         for (let dy = -1; dy <= 1; dy++) {
@@ -37,6 +40,8 @@ export class Forest {
         }
         return neighbors;
     }
+
+    // поджиг count случ деревьев
     igniteRandom(count) {
         const trees = [];
         for (let y = 0; y < this.size; y++) {
@@ -54,10 +59,12 @@ export class Forest {
         trees.slice(0, count).forEach(tree => { tree.state = STATE.FIRE;});
     }
 
+    //меняет тип местности у конкретной клетки
     setTerrain(x, y, terrain) {
     this.grid[y][x].terrain = terrain;
     }
 
+    // один тик симуляции
     step(wind, params) {
         const { fireProb, growProb, lightningProb = 0 } = params;
         const transitions = [];
@@ -66,15 +73,18 @@ export class Forest {
             for (let x = 0; x < this.size; x++) {
                 const cell = this.grid[y][x];
 
+                // вырастание дерева на пустой клетке
                 if (cell.isEmpty()) {
                     if(Math.random() < growProb) {
                         transitions.push({ x, y, newState: STATE.TREE });
                     }
                 } else if (cell.isTree()) {
+                // для дерева сначала смотрим, есть ли рядом горящие
                     const neighbors = this.getNeighbors(x, y);
                     const burningNeighbors = neighbors.filter(n => n.isFire());
 
                     if (burningNeighbors.length > 0) {
+                    // загорание от соседей
                         const prob = cell.ignitionProbability(burningNeighbors, wind, fireProb);
                         if(Math.random() < prob) {
                             transitions.push({ x, y, newState: STATE.FIRE });
@@ -84,10 +94,12 @@ export class Forest {
                         transitions.push({ x, y, newState: STATE.FIRE });
                     }
                 } else if (cell.isFire()) {
+                // горящая клетка в зооу
                     transitions.push({ x, y, newState: STATE.BURNED });
                 }
             }
         }
+        // приминяем все переходы
         this.applyTransitions(transitions);
     }
 
@@ -102,7 +114,7 @@ export class Forest {
             }
         }
     }
-
+    // считает клетки в каждом из 4 состояний для графика
     countStates() {
         const counts = { EMPTY: 0, TREE: 0, FIRE: 0, BURNED: 0 };
         for (let y = 0; y < this.size; y++) {

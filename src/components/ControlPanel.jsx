@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// описание слайдеров
 const SLIDERS = [
     {
         label: 'Burn probability',

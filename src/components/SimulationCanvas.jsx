@@ -1,8 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import { STATE, TERRAIN } from '../simulation/Cell.js';
 
+// Размер одной клетки в пикселях
 const CELL_SIZE = 8;
 
+// Цвет заливки клетки в зависимости от состояния
 const STATE_COLORS = {
     [STATE.EMPTY]: '#1a1a18',
     [STATE.TREE]: '#3b6d11',
@@ -10,7 +12,7 @@ const STATE_COLORS = {
     [STATE.BURNED]: '#2a1a0a',
 };
 
-
+// Полупрозрачная подсветка типа местности
 const TERRAIN_OVERLAY = {
   [TERRAIN.NORMAL]: null,
   [TERRAIN.WET]:    'rgba(30, 100, 200, 0.25)',
@@ -34,6 +36,7 @@ export default function SimulationCanvas({ simRef, running, tick }) {
         draw();
         }, []);
 
+    // Рисует всю сетку целиком
     function draw() {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -57,20 +60,20 @@ export default function SimulationCanvas({ simRef, running, tick }) {
                 }
             }
         }
-
+    // координаты клика мыши в координаты клетки
     function getCellCoords(e) {
             const rect = canvasRef.current.getBoundingClientRect();
             const x = Math.floor((e.clientX - rect.left) / CELL_SIZE);
             const y = Math.floor((e.clientY - rect.top) / CELL_SIZE);
             return { x, y };
         }
-
+    // Красит местность вокруг клетки
     function paintTerrain(cx, cy) {
         const sim = simRef.current;
         const size = sim.size;
 
         for (let dy = -brushSize; dy <= brushSize; dy++) {
-      for (let dx = -brushSize; dx <= brushSize; dx++) {
+        for (let dx = -brushSize; dx <= brushSize; dx++) {
         const nx = cx + dx;
         const ny = cy + dy;
         if (nx >= 0 && nx < size && ny >= 0 && ny < size) {
@@ -88,18 +91,19 @@ export default function SimulationCanvas({ simRef, running, tick }) {
         paintTerrain(x, y);
    }
 
-
-
+    // Продолжение рисования при движении мыши с зажатой кнопкой
     function handleMouseMove(e) {
         if (!isPainting.current || running) return;
         const { x, y } = getCellCoords(e);
         paintTerrain(x, y);
         }
 
+    // Отпустили кнопку мыши прекращаем рисовать
     function handleMouseUp() {
         isPainting.current = false;
         }
 
+    // точечный поджиг при клике на канвасе
     function handleClick(e) {
         if (!running) return;
         const { x, y } = getCellCoords(e);

@@ -6,6 +6,7 @@ export class Simulation {
     constructor(size, density) {
         this.size = size;
 
+        // настраиваемые  по умолчанию
         this.params = {
             density,
             fireProb: 0.4,
@@ -14,6 +15,7 @@ export class Simulation {
             speed: 200,
             lightningProb: 0.0002,
         };
+
 
         this.forest = new Forest(size, density);
         this.wind = new Wind('N', 0);
@@ -25,12 +27,14 @@ export class Simulation {
         this.prevFireCount = 0;
     }
 
+    // один тик симуляции
     step() {
         this.forest.step(this.wind, this.params);
         this.tick++;
         this.recordStats();
     }
 
+    // считает текущ статистику
     recordStats() {
         const counts = this.forest.countStates();
         const total = this.size * this.size;
@@ -54,10 +58,12 @@ export class Simulation {
         }
     }
 
+    // Поджигает params.igniteCount случайных деревьев
     ignite() {
         this.forest.igniteRandom(this.params.igniteCount);
     }
 
+    // сброс симуляции
     reset() {
         this.forest = new Forest(this.size, this.params.density);
         this.wind = new Wind('N', 0);
@@ -67,6 +73,7 @@ export class Simulation {
         this.prevFireCount = 0;
     }
 
+    // возвращ последнюю точку статист
     getCurrentStats() {
         if (this.history.length === 0) {
             return { counts: { EMPTY: 0, TREE: 0, FIRE: 0, BURNED: 0}, treeRatio: 0, burnedRatio: 0, spreadRate: 0 };
@@ -74,6 +81,7 @@ export class Simulation {
         return this.history[this.history.length - 1];
     }
 
+    // сеттеры параметров
     setFireProb(value) { this.params.fireProb = value; }
     setGrowProb(value) { this.params.growProb = value; }
     setSpeed(value) { this.params.speed = value; }

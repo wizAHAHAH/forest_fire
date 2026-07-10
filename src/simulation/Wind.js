@@ -1,3 +1,4 @@
+// навправления
 const WIND_VECTORS = {
     N: { dx: 0, dy: -1 },
     NE: { dx: 1, dy: -1 },
@@ -15,14 +16,17 @@ export class Wind {
         this.strength = strength;
     }
 
+    // установить направление
     setDirection(direction) {
         this.direction = direction;
     }
 
+    // установить силу
     setStrength(strength) {
         this.strength = strength;
     }
 
+    // во сколько раз ветер усилит или ослабит вероятность возг
     multiplierFor(fromCell, toCell) {
         const a = {
             dx: toCell.x - fromCell.x,

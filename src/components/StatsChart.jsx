@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
+// Описание линий графика
 const METRICS = [
     { key: 'treeRatio',   label: 'Tree ratio',        color: '#3b6d11' },
     { key: 'burnedRatio', label: 'Burned ratio', color: '#8a4a1a' },
@@ -19,6 +20,7 @@ export default function StatsChart({ history, tick }) {
             type: 'line',
             data: {
                 labels: [],
+                // три datasets
                 datasets: METRICS.map(m => ({
                     label: m.label,
                     data: [],
